@@ -1,0 +1,120 @@
+{
+  "context": "Organizer-provided estimates, not live quotes or availability. Quote date was not supplied. This file is local working material and must never be imported by the client or copied to public/dist.",
+  "initialGuidancePerGuest": 800,
+  "initialGuidanceNote": "Approximate planning indication only; never a guaranteed offer. Not published in the presentation.",
+  "commonComponents": [
+    {
+      "id": "coaching",
+      "label": "Padel coaching",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "group-total",
+      "treatment": "pending"
+    },
+    {
+      "id": "courts",
+      "label": "Court expenses",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "group-total",
+      "treatment": "pending"
+    },
+    {
+      "id": "breakfast",
+      "label": "Breakfast",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "per-person",
+      "treatment": "included"
+    },
+    {
+      "id": "transfers",
+      "label": "Transfers",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "group-total",
+      "treatment": "pending"
+    },
+    {
+      "id": "other",
+      "label": "Other specified components",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "group-total",
+      "treatment": "pending"
+    },
+    {
+      "id": "organizer",
+      "label": "Organizer costs or margin",
+      "amount": null,
+      "currency": "EUR",
+      "basis": "group-total",
+      "treatment": "pending"
+    }
+  ],
+  "scenarios": [
+    {
+      "accommodationId": "villa-verdi",
+      "scopeReviewed": false,
+      "currency": "EUR",
+      "components": [
+        {
+          "id": "accommodation",
+          "label": "Four-night accommodation estimate",
+          "amount": 2000,
+          "currency": "EUR",
+          "basis": "group-total",
+          "treatment": "included",
+          "source": "Organizer estimate; date not supplied"
+        }
+      ]
+    },
+    {
+      "accommodationId": "villa-la-marsa",
+      "scopeReviewed": false,
+      "currency": "EUR",
+      "components": [
+        {
+          "id": "accommodation",
+          "label": "Four-night accommodation estimate",
+          "amount": 1050,
+          "currency": "EUR",
+          "basis": "group-total",
+          "treatment": "included",
+          "source": "Organizer estimate; date not supplied"
+        }
+      ]
+    },
+    {
+      "accommodationId": "four-seasons-tunis",
+      "scopeReviewed": false,
+      "currency": "EUR",
+      "components": [
+        {
+          "id": "accommodation",
+          "label": "Hotel accommodation",
+          "amount": null,
+          "currency": "EUR",
+          "basis": "group-total",
+          "treatment": "pending"
+        }
+      ]
+    },
+    {
+      "accommodationId": "el-dar",
+      "scopeReviewed": false,
+      "currency": "EUR",
+      "components": [
+        {
+          "id": "accommodation",
+          "label": "EL Dar accommodation",
+          "amount": null,
+          "currency": "EUR",
+          "basis": "group-total",
+          "treatment": "pending"
+        }
+      ]
+    }
+  ],
+  "groupSizeRevisionNote": "Group corrected to eight on 8 November 2026. Original four-night supplier estimates are preserved unchanged; suitability and quotes need reconfirmation for the current group. Guest count is read from the trip dataset."
+}

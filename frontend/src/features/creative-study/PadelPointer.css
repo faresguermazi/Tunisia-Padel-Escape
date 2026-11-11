@@ -1,0 +1,68 @@
+.rally-motion-toggle {
+  position: fixed;
+  z-index: 60;
+  top: 100px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 13px;
+  background: #fff9ec;
+  color: #123a5e;
+  border: 1px solid #a8bcc9;
+  border-radius: 999px;
+  font-size: 12px;
+  box-shadow: 0 4px 14px #123a5e14;
+}
+.rally-motion-toggle:disabled {
+  opacity: 1;
+}
+.rally-pointer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+.rally-pointer > i {
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ddef69;
+  box-shadow:
+    0 0 0 1px #456326,
+    0 2px 9px #123a5e30;
+  overflow: hidden;
+}
+.rally-pointer > i::before,
+.rally-pointer > i::after {
+  content: '';
+  position: absolute;
+  width: 21px;
+  height: 28px;
+  top: -3px;
+  border: 1.5px solid #fffde9;
+  border-radius: 50%;
+}
+.rally-pointer > i::before {
+  left: -15px;
+}
+.rally-pointer > i::after {
+  right: -15px;
+}
+.rally-pointer[data-interactive='true'] > i {
+  transform: scale(1.35);
+  background: #f2f8a9;
+}
+@media (hover: hover) and (pointer: fine) {
+  :root.has-ball-cursor,
+  :root.has-ball-cursor * {
+    cursor: none !important;
+  }
+}

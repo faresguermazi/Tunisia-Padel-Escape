@@ -1,0 +1,58 @@
+/* Shared closing photograph, used by every direction. */
+.transparent-closing {
+  position: relative;
+  min-height: 420px;
+  height: 65svh;
+  max-height: 720px;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+}
+.transparent-closing > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 85%;
+}
+.transparent-closing::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #102e35a6;
+}
+.transparent-closing > div {
+  position: relative;
+  z-index: 1;
+  color: #fff9e9;
+  padding-block: 3rem;
+  width: 100%;
+  text-align: center;
+}
+.transparent-closing p {
+  font: italic 400 clamp(2.3rem, 6vw, 6.2rem)/1.1 var(--serif);
+  max-width: 24ch;
+  margin: 0 auto;
+}
+.transparent-closing small {
+  display: block;
+  margin-top: 2.5rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .transparent-closing {
+    min-height: 380px;
+    height: 60svh;
+  }
+  .transparent-closing > img {
+    object-position: 50% 80%;
+  }
+  .transparent-closing small {
+    max-width: 25ch;
+    margin-inline: auto;
+    line-height: 1.8;
+  }
+}

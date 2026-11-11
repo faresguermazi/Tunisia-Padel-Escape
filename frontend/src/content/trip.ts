@@ -1,0 +1,265 @@
+import { proposalStatus } from './proposalStatus.ts'
+import { hotel } from './hotel.ts'
+import { accommodations } from './accommodations.ts'
+import { media } from './media.ts'
+import type { TripContent } from './types'
+
+export const trip: TripContent = {
+  id: 'tunisia-padel-2027-02',
+  title: 'Tunisia Padel Escape',
+  destination: 'Tunisia',
+  tagline: 'Padel. Place. Good company.',
+  startDate: '2027-02-03',
+  endDate: '2027-02-07',
+  dateLabel: '3–7 February 2027',
+  guestCount: 8,
+  days: 5,
+  nights: 4,
+  status: 'proposed',
+  statusGuide: (['included', 'proposed', 'optional'] as const).map((id) => ({
+    id,
+    ...proposalStatus[id],
+  })),
+  navigation: [
+    { id: 'on-the-court', label: 'The journey' },
+    { id: 'stays', label: 'Stays' },
+    { id: 'the-details', label: 'Your escape' },
+    { id: 'next', label: 'What’s next' },
+  ],
+  introduction: {
+    eyebrow: 'A few days away with friends',
+    title: 'Tunisia',
+    accent: 'Padel Escape',
+    description: '',
+    area: 'Gammarth · La Marsa · Sidi Bou Saïd',
+    scrollLabel: 'See our days together',
+    mediaId: 'padel-court',
+    note: 'This is a private trip proposal, not a booking confirmation. Final availability, room sharing, transport scope and session times will be agreed together.',
+    flavour: 'Premium padel experience, with a little Tunisian spice.',
+  },
+  program: {
+    id: 'on-the-court',
+    number: '01',
+    eyebrow: '',
+    title: 'The journey',
+    description: '',
+    courtMediaId: 'padel-court',
+    dayImageNote: 'Destination and padel inspiration.',
+    courtCaption: 'Editorial padel photography, not Padel Gammarth.',
+    club: 'Padel Gammarth',
+    breakfastNote: 'Breakfast at your stay',
+    clubDescription:
+      'A local competition venue named in the Tunisian federation’s 2026 FIP Bronze program.',
+    clubSourceUrl: 'https://www.ftt.tn/news.php?id=1893&p=1',
+    destinationMediaId: 'sidi-coast',
+    destinationTitle: 'The Mediterranean, with a Tunisian soul.',
+    destinationNote: '',
+    schedule: [
+      {
+        date: '2027-02-03',
+        mediaId: 'sidi-coast',
+        kind: 'arrival',
+        title: 'Hello, Tunisia.',
+        description: 'From the airport to your stay.',
+      },
+      {
+        date: '2027-02-04',
+        mediaId: 'padel-court',
+        kind: 'padel',
+        activityId: 'coaching-games',
+      },
+      {
+        date: '2027-02-05',
+        mediaId: 'sidi-dome',
+        kind: 'padel',
+        activityId: 'progress-play',
+      },
+      {
+        date: '2027-02-06',
+        mediaId: 'sidi-coast',
+        kind: 'padel',
+        activityId: 'special-games',
+      },
+      {
+        date: '2027-02-07',
+        mediaId: 'sidi-village',
+        kind: 'departure',
+        title: 'Until next time.',
+        description: 'Your transfer back to the airport.',
+      },
+    ],
+    afternoonLabel: 'Afternoon',
+    afternoonNote: 'Explore or unwind.',
+    planningNote: "We'll agree the times with you and the club.",
+    afternoonOption:
+      'Extra court time or games with local players, arranged ahead.',
+    afternoonExperiences: 'Local experiences, planned with you.',
+    padelHighlights: [
+      { value: '3 padel mornings', label: 'Coaching & friendly games' },
+      { value: '2 courts', label: 'At Padel Gammarth' },
+      { value: '2 professional coaches', label: 'Time to work on your game' },
+      { value: 'Americano', label: '2 hours with local players' },
+    ],
+  },
+  activities: [
+    {
+      id: 'coaching-games',
+      number: '01',
+      title: 'Coaching & friendly games',
+      status: 'proposed',
+      rhythm: 'First games together',
+      summary: ['Coaching / 1.5 h', 'Friendly games / 1.5 h'],
+      description: 'Coaching 1.5 h / Friendly games 1.5 h',
+      detail: 'Coaching first, then friendly games together.',
+    },
+    {
+      id: 'progress-play',
+      number: '02',
+      title: 'Coaching & friendly games',
+      status: 'proposed',
+      rhythm: 'Back on court',
+      summary: ['Coaching / 1.5 h', 'Friendly games / 1.5 h'],
+      description: 'Coaching 1.5 h / Friendly games 1.5 h',
+      detail:
+        'Put the coaching into practice with another morning of friendly games.',
+    },
+    {
+      id: 'special-games',
+      number: '03',
+      title: 'Coaching & Americano',
+      status: 'proposed',
+      rhythm: 'Meet the local players',
+      summary: ['Coaching / 1 h', 'Americano / 2 h with local players'],
+      description: 'Coaching / 1 h / Americano / 2 h with local players',
+      detail:
+        'An hour of coaching, then two hours of Americano with local players.',
+    },
+  ],
+  stays: {
+    id: 'stays',
+    number: '02',
+    eyebrow: '',
+    title: 'Stays',
+    description: '',
+    photographyNote: 'Photos to follow',
+    recommendationNote:
+      'Villa Verde is our current recommendation for Tunisian character and comfort.',
+    preferredAccommodationId: 'villa-verdi',
+    selectedAccommodationId: null,
+  },
+  accommodations,
+  hotel,
+  budget: {
+    inclusions: [
+      '4 nights',
+      '3 breakfasts',
+      '3 padel mornings',
+      '2 professional coaches',
+      '2 courts',
+      'Americano with local players',
+      'Private transfers',
+    ],
+    transport: {
+      title: 'Transport',
+      description: 'Private transport included',
+      driver: 'With a private driver.',
+      routes: [
+        {
+          id: 'airport',
+          icon: 'plane',
+          label: 'Airport',
+          count: '2 transfers',
+          vehicle: 'Private minibus',
+          detail: 'Extra room for luggage',
+        },
+        {
+          id: 'club',
+          icon: 'racket',
+          label: 'Villa / club',
+          count: '6 transfers',
+          vehicle: '8-passenger minivan',
+          detail: 'Three mornings, there & back',
+        },
+      ],
+      hotelNote: 'Airport transfers only.',
+    },
+    id: 'the-details',
+    number: '03',
+    eyebrow: '',
+    title: 'Your escape',
+    description: '',
+    pendingLabel: 'Price to follow',
+    scope: [
+      {
+        title: 'Included in your escape',
+        status: 'included',
+        items: [
+          'Four nights',
+          '3 breakfasts',
+          'Three padel mornings',
+          'Private transfers',
+        ],
+      },
+      {
+        title: 'Before we confirm',
+        status: 'proposed',
+        items: [
+          'Stay and room sharing',
+          'Transfer arrangements',
+          'Court times and availability',
+        ],
+      },
+      {
+        title: 'Make it your own',
+        status: 'optional',
+        items: [
+          'Dining and local discoveries',
+          'Extra padel',
+          'Afternoons shaped together',
+        ],
+      },
+    ],
+    note: '',
+  },
+  next: {
+    id: 'next',
+    number: '04',
+    eyebrow: '',
+    title: 'What’s next',
+    description: '',
+    steps: [
+      { title: 'Choose', text: 'Tell us which stay you prefer.' },
+      {
+        title: 'Confirm',
+        text: 'We check availability and arrange the reservations.',
+      },
+      {
+        title: 'Get ready',
+        text: 'We send you the times and travel details.',
+      },
+      {
+        title: 'A little more Tunisia',
+        text: 'Want us to plan the afternoons too? We can arrange outings and book a few good tables.',
+        optional: true,
+      },
+    ],
+    beyond: {
+      title: 'A little more Tunisia.',
+      note: 'Ideas for our conversation, beyond the courts.',
+      items: [
+        'Medina & local craft',
+        'Sidi Bou Saïd and coastal walks',
+        'Tunisian tables',
+      ],
+      mediaId: 'sidi-dome',
+    },
+    closing: 'On court together.\nOut exploring Tunisia.',
+    signoff: 'See you on court.',
+    mediaId: 'sidi-village',
+  },
+  media: import.meta.env?.PROD
+    ? media.filter(
+        (item) => !(item.kind === 'image' && item.usage === 'temporary-local'),
+      )
+    : media,
+}

@@ -1,0 +1,51 @@
+.brand-mark {
+  display: block;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 60px;
+  background: currentColor;
+  mask: url('/media/branding/tunis-racket.png') center / contain no-repeat;
+  transform-origin: 50% 75%;
+  animation: brand-arrival 4.8s ease-in-out 1;
+}
+
+@keyframes brand-arrival {
+  0%,
+  100% {
+    transform: perspective(300px) rotateY(0deg) rotate(0deg);
+  }
+  30% {
+    transform: perspective(300px) rotateY(-22deg) rotate(-6deg);
+  }
+  65% {
+    transform: perspective(300px) rotateY(18deg) rotate(2deg);
+  }
+}
+
+.site-header .wordmark {
+  gap: 10px;
+}
+.site-header .navigation-toggle {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .brand-mark {
+    flex-basis: 32px;
+    width: 32px;
+    height: 48px;
+  }
+  [data-presentation='collection'] .site-header .wordmark {
+    gap: 7px;
+    font-size: clamp(18px, 5.3vw, 23px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark {
+    animation: none;
+  }
+}
+html[data-rally-motion='off'] .brand-mark {
+  animation: none;
+}
