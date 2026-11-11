@@ -12,6 +12,12 @@ const reviewEnabled = import.meta.env.DEV || import.meta.env.MODE === 'review'
 const IdentityStudy = import.meta.env.DEV
   ? lazy(() => import('../features/identity-study/IdentityStudy'))
   : null
+const ExploreRoute = reviewEnabled
+  ? lazy(() => import('../explore/ExploreRoute'))
+  : null
+const VersionSwitcher = reviewEnabled
+  ? lazy(() => import('../explore/VersionSwitcher'))
+  : null
 const PadelPointer = reviewEnabled
   ? lazy(() => import('../features/creative-study/PadelPointer'))
   : null
@@ -51,6 +57,19 @@ function ReferencePresentation() {
 }
 
 export default function App() {
+  const params = new URLSearchParams(window.location.search)
+  // Static review routing: /?direction=blue-door. Review and development only.
+  const direction = params.get('direction')
+  if (
+    ExploreRoute &&
+    (direction === 'order-of-play' || direction === 'blue-door')
+  ) {
+    return (
+      <Suspense fallback={null}>
+        <ExploreRoute direction={direction} />
+      </Suspense>
+    )
+  }
   if (
     IdentityStudy &&
     new URLSearchParams(window.location.search).get('study') === 'identity'
@@ -69,6 +88,11 @@ export default function App() {
         Skip to the padel experience
       </a>
       <ReferencePresentation />
+      {VersionSwitcher && (
+        <Suspense fallback={null}>
+          <VersionSwitcher current="reference" />
+        </Suspense>
+      )}
       {PadelPointer && (
         <Suspense fallback={null}>
           <PadelPointer />
