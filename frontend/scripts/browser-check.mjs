@@ -404,6 +404,7 @@ try {
         )
       }
       for (const chapter of [
+        trip.club,
         trip.program,
         trip.stays,
         trip.budget,
@@ -497,7 +498,7 @@ try {
     .getByRole('navigation', { name: 'Chapters' })
     .getByRole('link', { name: trip.navigation[0].label, exact: true })
     .click()
-  assert.equal(new URL(page.url()).hash, `#${trip.program.id}`)
+  assert.equal(new URL(page.url()).hash, `#${trip.club.id}`)
   await page.goto(new URL('/__qa/gallery', url(dev)).href, {
     waitUntil: 'networkidle',
   })

@@ -201,3 +201,5 @@ Recommendation placement: remove the label beside Private villa. The preferred s
 Recommendation badge refinement: trial a muted gold coin with a small embossed star, replacing cream/olive. Keep it static and discreet.
 
 Closing cleanup: remove the combined date/signoff line over the closing photograph. Publication and Git handoff were requested, then paused by the organizer pending connection to their personal Git. Prepare and check locally; do not publish, commit or push until resumed.
+
+Padel club introduction: a compact Padel Gammarth chapter precedes The journey, with labelled editorial photography pending approved club media. Club-owned sources support seaside setting, restaurant/terrace and fitness/pools; February access and charges remain unconfirmed and not included. Coach copy describes the planned experience, not invented identities or credentials. The organizer authorized fetching, merging and pushing Claude's creative versions together with this addition; publication remains deferred.

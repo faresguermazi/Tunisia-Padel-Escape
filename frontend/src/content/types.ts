@@ -1,3 +1,5 @@
+import type { padelClub } from './padelClub'
+
 export type InformationStatus = 'proposed' | 'estimated' | 'confirmed'
 
 export interface ImageMedia {
@@ -103,6 +105,7 @@ export type PackageEstimate =
     }
 
 export interface TripContent {
+  club: typeof padelClub
   id: string
   title: string
   destination: string

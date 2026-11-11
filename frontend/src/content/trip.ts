@@ -2,9 +2,11 @@ import { proposalStatus } from './proposalStatus.ts'
 import { hotel } from './hotel.ts'
 import { accommodations } from './accommodations.ts'
 import { media } from './media.ts'
+import { padelClub } from './padelClub.ts'
 import type { TripContent } from './types'
 
 export const trip: TripContent = {
+  club: padelClub,
   id: 'tunisia-padel-2027-02',
   title: 'Tunisia Padel Escape',
   destination: 'Tunisia',
@@ -21,6 +23,7 @@ export const trip: TripContent = {
     ...proposalStatus[id],
   })),
   navigation: [
+    { id: 'padel', label: 'Padel Gammarth' },
     { id: 'on-the-court', label: 'The journey' },
     { id: 'stays', label: 'Stays' },
     { id: 'the-details', label: 'Your escape' },

@@ -42,9 +42,13 @@ test('content IDs, navigation and scenario relationships stay valid when options
       collection.length,
     )
   }
-  const sections = [trip.program, trip.stays, trip.budget, trip.next].map(
-    (section) => section.id,
-  )
+  const sections = [
+    trip.club,
+    trip.program,
+    trip.stays,
+    trip.budget,
+    trip.next,
+  ].map((section) => section.id)
   for (const item of trip.navigation) assert.ok(sections.includes(item.id))
   for (const option of [...trip.accommodations, trip.hotel]) {
     const scenario = { accommodationId: option.id, estimate: option.estimate }
@@ -62,10 +66,10 @@ test('content IDs, navigation and scenario relationships stay valid when options
   }
 })
 
-test('refined trip keeps eight guests, five chapters and complete-package calculations in sync', () => {
+test('refined trip keeps eight guests, club navigation and complete-package calculations in sync', () => {
   assert.equal(trip.guestCount, 8)
   assert.equal('experience' in trip, false)
-  assert.equal(trip.navigation[0].id, trip.program.id)
+  assert.equal(trip.navigation[0].id, trip.club.id)
   const chapters = [trip.program, trip.stays, trip.budget, trip.next]
   assert.deepEqual(
     chapters.map((chapter) => chapter.number),

@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 import { trip } from '../content/trip'
 import { TripIntroduction } from '../features/introduction/TripIntroduction'
 import { PadelProgram } from '../features/padel-experience/PadelProgram'
+import { PadelClub } from '../features/padel-experience/PadelClub'
 import { AccommodationCollection } from '../features/accommodations/AccommodationCollection'
 import { PackageOptions } from '../features/budget/PackageOptions'
 import { NextSteps } from '../features/trip-information/NextSteps'
@@ -23,6 +24,7 @@ function ReferencePresentation() {
       <Navigation trip={trip} />
       <main>
         <TripIntroduction trip={trip} />
+        <PadelClub content={trip.club} media={trip.media} />
         <PadelProgram
           content={trip.program}
           activities={trip.activities}
