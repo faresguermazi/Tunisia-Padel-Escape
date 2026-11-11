@@ -809,6 +809,17 @@ try {
     0,
     'Normal production keeps only the reference',
   )
+  for (const direction of ['blue-door', 'order-of-play']) {
+    await page.goto(`${url(production)}?direction=${direction}`, {
+      waitUntil: 'networkidle',
+    })
+    assert.equal(
+      await page.locator('.bd, .op, .vs').count(),
+      0,
+      'Production ignores creative directions and the version switcher',
+    )
+    assert.equal(await page.locator('#on-the-court').count(), 1)
+  }
   for (const photo of trip.media.filter(
     (item) => item.usage === 'temporary-local',
   )) {
@@ -872,6 +883,28 @@ try {
   console.log(
     'Review build verified: Petrol & cream, opening flag and noindex metadata.',
   )
+  assert.equal(await page.locator('.vs-toggle').count(), 1)
+  for (const [direction, root] of [
+    ['blue-door', '.bd'],
+    ['order-of-play', '.op'],
+  ]) {
+    await page.setViewportSize({ width: 390, height: 900 })
+    await page.goto(`${url(production)}?direction=${direction}`, {
+      waitUntil: 'networkidle',
+    })
+    await page.locator(root).waitFor()
+    assert.equal(await page.locator('.vs-toggle').count(), 1)
+    assert.equal(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth > innerWidth,
+      ),
+      false,
+      `${direction} has no horizontal overflow on mobile`,
+    )
+    for (const id of ['on-the-court', 'stays', 'the-details', 'next'])
+      assert.equal(await page.locator(`${root} #${id}`).count(), 1)
+  }
+  console.log('Review creative directions verified.')
   await page.goto(`${url(production)}#villa-la-marsa`, {
     waitUntil: 'networkidle',
   })

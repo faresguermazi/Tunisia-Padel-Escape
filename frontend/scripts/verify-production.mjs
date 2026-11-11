@@ -29,6 +29,10 @@ const reviewOnly = [
   'cinematic-study',
   'design-comparison',
   'Compact accommodation collection',
+  'Design versions (local review)',
+  'bd-leaves',
+  'op-scoreline',
+  'xs-carousel',
 ]
 const forbidden = [
   'identity-study',
