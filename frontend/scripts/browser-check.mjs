@@ -471,6 +471,9 @@ try {
       }
       for (const summary of details) await summary.click()
       if (width === 1440 || width === 390) {
+        await page.locator('#padel').screenshot({
+          path: path.join(screenshots, `${width}-padel-club.png`),
+        })
         await page.evaluate(() => {
           document.activeElement?.blur()
           window.scrollTo(0, 0)
@@ -901,8 +904,48 @@ try {
       false,
       `${direction} has no horizontal overflow on mobile`,
     )
-    for (const id of ['on-the-court', 'stays', 'the-details', 'next'])
+    for (const id of ['padel', 'on-the-court', 'stays', 'the-details', 'next'])
       assert.equal(await page.locator(`${root} #${id}`).count(), 1)
+    for (const width of [320, 390, 1440]) {
+      await page.setViewportSize({ width, height: 900 })
+      assert.equal(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth > innerWidth,
+        ),
+        false,
+        `${direction} overflow at ${width}`,
+      )
+      if (width !== 320) {
+        const audit = await new AxeBuilder({ page }).analyze()
+        assert.deepEqual(
+          audit.violations,
+          [],
+          `${direction} accessibility at ${width}`,
+        )
+        await page.locator(`${root} #padel`).screenshot({
+          path: path.join(screenshots, `${width}-${direction}-padel.png`),
+        })
+      }
+    }
+    const carousel = page.locator('.xs-carousel').first()
+    const count = carousel.locator('.xs-count')
+    const firstCount = await count.innerText()
+    await carousel
+      .getByRole('button', { name: 'Next photograph', exact: true })
+      .click()
+    assert.notEqual(await count.innerText(), firstCount)
+    await carousel.locator('.xs-track').focus()
+    await page.keyboard.press('ArrowLeft')
+    assert.equal(await count.innerText(), firstCount)
+    await page.setViewportSize({ width: 390, height: 900 })
+    await page
+      .getByRole('button', { name: 'Open navigation', exact: true })
+      .click()
+    await page
+      .getByRole('navigation', { name: 'Chapters' })
+      .locator('a[href="#padel"]')
+      .click()
+    assert.equal(new URL(page.url()).hash, '#padel')
   }
   console.log('Review creative directions verified.')
   await page.goto(`${url(production)}#villa-la-marsa`, {

@@ -211,3 +211,21 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+:is(.op, .bd) .padel-club {
+  --paper: var(--x-paper);
+  --ink: var(--x-ink);
+  --accent: var(--x-accent);
+  --line: var(--x-line);
+  --muted: color-mix(in srgb, var(--x-ink) 78%, var(--x-paper));
+  border-top: 1px solid var(--x-line);
+}
+.op .padel-club .display-title {
+  font-family: var(--cond);
+  text-transform: uppercase;
+}
+:is(.op, .bd) .padel-club h3 {
+  margin-bottom: 12px;
+}
+:is(.op, .bd) .padel-club .padel-club-note {
+  margin-top: 10px;
+}

@@ -1,4 +1,4 @@
-import type { padelClub } from './padelClub'
+import type { padelClub } from './padelClub.ts'
 
 export type InformationStatus = 'proposed' | 'estimated' | 'confirmed'
 

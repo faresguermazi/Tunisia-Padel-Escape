@@ -20,7 +20,7 @@
 .op {
   --x-paper: #ece5d6;
   --x-ink: #14231f;
-  --x-accent: #b6492b; /* glazed-tile clay */
+  --x-accent: #963b23; /* glazed-tile clay, readable on warm paper */
   --x-ball: #d6e04a;
   --x-line: color-mix(in srgb, #14231f 22%, transparent);
   --cond: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
@@ -505,7 +505,7 @@
   transform: scale(1.06);
 }
 .op-day--travel time strong {
-  opacity: 0.35;
+  opacity: 0.65;
 }
 .op-day--travel h3 {
   font-weight: 500;
@@ -573,7 +573,7 @@
   border: 0;
   border-bottom: 1px solid var(--x-line);
   color: inherit;
-  opacity: 0.55;
+  opacity: 0.9;
   transition:
     opacity 0.25s,
     padding 0.3s,

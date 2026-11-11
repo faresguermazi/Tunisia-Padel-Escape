@@ -105,3 +105,10 @@ The separate logo proposal is available only in development at
 Amiri Arabic lettering at large and small sizes, on petrol and cream. Use Play one
 turn to inspect the finite motion. Reduced motion keeps it static. The presentation
 header remains text-only, and neither production nor review builds includes the study.
+
+## Creative versions (local and review only)
+
+The reference remains the default. Compare Claude's merged versions at
+http://localhost:5173/?direction=order-of-play and
+http://localhost:5173/?direction=blue-door, or use the collapsible Versions control.
+The new Padel Gammarth chapter is available in all three; production excludes the alternatives.

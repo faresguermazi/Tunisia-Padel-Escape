@@ -574,7 +574,7 @@
   border: 0;
   border-bottom: 1px solid var(--x-line);
   color: inherit;
-  opacity: 0.5;
+  opacity: 0.7;
   transition:
     opacity 0.25s,
     padding 0.3s,

@@ -2,6 +2,9 @@
   background: var(--paper);
   color: var(--ink);
 }
+.padel-club .chapter-heading {
+  margin-bottom: 32px;
+}
 .padel-club-layout {
   display: grid;
   grid-template-columns: 1.1fr 1fr;

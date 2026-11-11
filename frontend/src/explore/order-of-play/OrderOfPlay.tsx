@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { BrandMark } from '../../shared/components/BrandMark'
+import { PadelClub } from '../../features/padel-experience/PadelClub'
 import { Icon } from '../../shared/components/Icon'
 import {
   dayParts,
@@ -69,7 +70,11 @@ function Header() {
         if (event.key === 'Escape') setOpen(false)
       }}
     >
-      <a className="op-lockup" href="#top" aria-label="Back to the beginning">
+      <a
+        className="op-lockup"
+        href="#top"
+        aria-label={`${trip.title}, back to the beginning`}
+      >
         <BrandMark />
         <span>
           Tunisia
@@ -395,11 +400,7 @@ function Escape({ onPick }: { onPick: (id: string) => void }) {
                     : undefined
                 }
               >
-                <a
-                  href="#stays"
-                  onClick={() => onPick(s.id)}
-                  aria-label={`${s.name}, ${price(s)} per guest. See the stay`}
-                >
+                <a href="#stays" onClick={() => onPick(s.id)}>
                   <span className="op-price-name">
                     {shortName(s)}
                     {s.id === trip.stays.preferredAccommodationId && (
@@ -510,6 +511,7 @@ export default function OrderOfPlay() {
       <Header />
       <main>
         <Hero />
+        <PadelClub content={trip.club} media={trip.media} />
         <Journey />
         <Stays selected={selected} setSelected={setSelected} />
         <Escape onPick={setSelected} />
