@@ -812,7 +812,7 @@ try {
     0,
     'Normal production keeps only the reference',
   )
-  for (const direction of ['blue-door', 'order-of-play']) {
+  for (const direction of ['blue-door', 'petrol-door']) {
     await page.goto(`${url(production)}?direction=${direction}`, {
       waitUntil: 'networkidle',
     })
@@ -889,7 +889,7 @@ try {
   assert.equal(await page.locator('.vs-toggle').count(), 1)
   for (const [direction, root] of [
     ['blue-door', '.bd'],
-    ['order-of-play', '.op'],
+    ['petrol-door', '.petrol-door'],
   ]) {
     await page.setViewportSize({ width: 390, height: 900 })
     await page.goto(`${url(production)}?direction=${direction}`, {
@@ -939,13 +939,75 @@ try {
     assert.equal(await count.innerText(), firstCount)
     await page.setViewportSize({ width: 390, height: 900 })
     await page
-      .getByRole('button', { name: 'Open navigation', exact: true })
+      .getByRole('button', {
+        name:
+          direction === 'petrol-door'
+            ? 'Open chapter navigation'
+            : 'Open navigation',
+        exact: true,
+      })
       .click()
     await page
       .getByRole('navigation', { name: 'Chapters' })
       .locator('a[href="#padel"]')
       .click()
     assert.equal(new URL(page.url()).hash, '#padel')
+    if (direction === 'petrol-door') {
+      await page.emulateMedia({ reducedMotion: 'no-preference' })
+      const closing = page.locator('.hybrid-closing')
+      await closing.evaluate((element) =>
+        window.scrollTo(
+          0,
+          element.getBoundingClientRect().top + window.scrollY,
+        ),
+      )
+      await page.waitForFunction(
+        () =>
+          Number(
+            document
+              .querySelector('.hybrid-closing')
+              .style.getPropertyValue('--p'),
+          ) < 0.1,
+      )
+      await closing.evaluate((element) =>
+        window.scrollTo(
+          0,
+          element.getBoundingClientRect().bottom + window.scrollY - innerHeight,
+        ),
+      )
+      await page.waitForFunction(
+        () =>
+          Number(
+            document
+              .querySelector('.hybrid-closing')
+              .style.getPropertyValue('--p'),
+          ) > 0.99,
+      )
+      await page.emulateMedia({ reducedMotion: 'reduce' })
+      await page.locator('.package-quote').last().getByRole('link').click()
+      assert.equal(
+        await page
+          .locator('#bd-tab-four-seasons-tunis')
+          .getAttribute('aria-selected'),
+        'true',
+      )
+      await page.locator('#bd-tab-villa-la-marsa').click()
+      await page.locator('.package-quote').last().getByRole('link').click()
+      assert.equal(
+        await page
+          .locator('#bd-tab-four-seasons-tunis')
+          .getAttribute('aria-selected'),
+        'true',
+      )
+      for (const width of [390, 1440]) {
+        await page.setViewportSize({ width, height: 900 })
+        for (const id of ['invitation', 'stays', 'next']) {
+          await page.locator(`#${id}`).screenshot({
+            path: path.join(screenshots, `${width}-hybrid-${id}.png`),
+          })
+        }
+      }
+    }
   }
   console.log('Review creative directions verified.')
   await page.goto(`${url(production)}#villa-la-marsa`, {

@@ -64,7 +64,7 @@ export default function App() {
   const direction = params.get('direction')
   if (
     ExploreRoute &&
-    (direction === 'order-of-play' || direction === 'blue-door')
+    (direction === 'petrol-door' || direction === 'blue-door')
   ) {
     return (
       <Suspense fallback={null}>

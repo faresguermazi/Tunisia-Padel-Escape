@@ -95,11 +95,15 @@ function Header() {
   )
 }
 
-function Hero() {
+export function BlueDoorHero({ hybrid = false }: { hybrid?: boolean }) {
   const court = imageById(trip.introduction.mediaId)
   const door = imageById(trip.next.mediaId)
   return (
-    <section className="bd-hero" id="top" aria-labelledby="bd-title">
+    <section
+      className={hybrid ? 'bd bd-hero hybrid-hero' : 'bd-hero'}
+      id={hybrid ? 'invitation' : 'top'}
+      aria-labelledby="bd-title"
+    >
       {court && (
         <img
           className="bd-hero-bg"
@@ -120,7 +124,7 @@ function Hero() {
             width="22"
             height="15"
           />
-          3–7 February 2027
+          {trip.dateLabel}
         </p>
         <h1 id="bd-title">
           Tunisia
@@ -255,12 +259,14 @@ function Journey() {
   )
 }
 
-function Stays({
+export function BlueDoorStays({
   selected,
   setSelected,
+  hybrid = false,
 }: {
   selected: string
   setSelected: (id: string) => void
+  hybrid?: boolean
 }) {
   const content = trip.stays
   const option = stays.find((s) => s.id === selected) ?? stays[0]
@@ -281,7 +287,7 @@ function Stays({
   return (
     <section
       id={content.id}
-      className="bd-section bd-stays"
+      className={`bd-section bd-stays${hybrid ? ' bd hybrid-stays' : ''}`}
       aria-labelledby="bd-stays-title"
     >
       <div className="bd-wrap">
@@ -408,7 +414,7 @@ function Escape({ onPick }: { onPick: (id: string) => void }) {
   )
 }
 
-function Next() {
+export function BlueDoorClosing({ hybrid = false }: { hybrid?: boolean }) {
   const { next } = trip
   const door = imageById(next.mediaId)
   const backdrop = imageById('sidi-coast')
@@ -416,13 +422,15 @@ function Next() {
   useEffect(() => {
     const el = stage.current
     if (!el) return
-    const still = reducedMotion()
+    const preference = matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
     const update = () => {
       frame = 0
       const r = el.getBoundingClientRect()
       const range = Math.max(1, r.height - window.innerHeight)
-      const raw = still ? 1 : Math.min(1, Math.max(0, -r.top / range))
+      const raw = preference.matches
+        ? 1
+        : Math.min(1, Math.max(0, -r.top / range))
       // doors shut over the first 70% of the scroll, then rest
       const p = Math.min(1, raw / 0.7)
       el.style.setProperty('--p', String(1 - Math.pow(1 - p, 3)))
@@ -437,12 +445,43 @@ function Next() {
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
+    preference.addEventListener('change', onScroll)
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      preference.removeEventListener('change', onScroll)
       cancelAnimationFrame(frame)
     }
   }, [])
+  return (
+    <div
+      className={hybrid ? 'bd bd-close hybrid-closing' : 'bd-close'}
+      ref={stage}
+    >
+      <div className="bd-close-stage">
+        {door && (
+          <>
+            {backdrop && (
+              <img
+                className="bd-close-bg"
+                src={backdrop.smallSrc ?? backdrop.src}
+                alt=""
+                width={backdrop.width}
+                height={backdrop.height}
+                loading="lazy"
+              />
+            )}
+            <Leaves src={door.src} />
+          </>
+        )}
+        <p className="bd-signoff">{next.signoff}</p>
+      </div>
+    </div>
+  )
+}
+
+function Next() {
+  const { next } = trip
   return (
     <section
       id={next.id}
@@ -464,26 +503,7 @@ function Next() {
           ))}
         </ol>
       </div>
-      <div className="bd-close" ref={stage}>
-        <div className="bd-close-stage">
-          {door && (
-            <>
-              {backdrop && (
-                <img
-                  className="bd-close-bg"
-                  src={backdrop.smallSrc ?? backdrop.src}
-                  alt=""
-                  width={backdrop.width}
-                  height={backdrop.height}
-                  loading="lazy"
-                />
-              )}
-              <Leaves src={door.src} />
-            </>
-          )}
-          <p className="bd-signoff">{next.signoff}</p>
-        </div>
-      </div>
+      <BlueDoorClosing />
     </section>
   )
 }
@@ -507,10 +527,10 @@ export default function BlueDoor() {
       </a>
       <Header />
       <main>
-        <Hero />
+        <BlueDoorHero />
         <PadelClub content={trip.club} media={trip.media} />
         <Journey />
-        <Stays selected={selected} setSelected={setSelected} />
+        <BlueDoorStays selected={selected} setSelected={setSelected} />
         <Escape onPick={setSelected} />
         <Next />
       </main>

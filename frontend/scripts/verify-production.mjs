@@ -31,7 +31,7 @@ const reviewOnly = [
   'Compact accommodation collection',
   'Design versions (local review)',
   'bd-leaves',
-  'op-scoreline',
+  'petrol-door',
   'xs-carousel',
 ]
 const forbidden = [

@@ -3,7 +3,11 @@ import './VersionSwitcher.css'
 
 const versions = [
   { id: 'reference', label: 'Reference', note: 'Petrol & cream' },
-  { id: 'order-of-play', label: 'Order of play', note: 'Print-club programme' },
+  {
+    id: 'petrol-door',
+    label: 'Petrol & doors',
+    note: 'The combined direction',
+  },
   { id: 'blue-door', label: 'The blue door', note: 'Cinematic' },
 ] as const
 

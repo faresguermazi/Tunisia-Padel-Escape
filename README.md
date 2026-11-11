@@ -1,4 +1,4 @@
-﻿# Tunisia Padel Escape
+# Tunisia Padel Escape
 
 A private, static presentation for eight adults visiting Tunisia, 3–7 February 2027.
 Four nights, three padel mornings and a choice of two villas or Four Seasons Hotel Tunis.
@@ -109,6 +109,6 @@ header remains text-only, and neither production nor review builds includes the 
 ## Creative versions (local and review only)
 
 The reference remains the default. Compare Claude's merged versions at
-http://localhost:5173/?direction=order-of-play and
+http://localhost:5173/?direction=petrol-door and
 http://localhost:5173/?direction=blue-door, or use the collapsible Versions control.
 The new Padel Gammarth chapter is available in all three; production excludes the alternatives.

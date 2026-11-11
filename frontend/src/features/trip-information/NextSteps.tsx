@@ -1,4 +1,5 @@
 import './ClosingImage.css'
+import type { ReactNode } from 'react'
 import { Photograph } from '../../shared/components/Photograph'
 import { findImage } from '../../content/findImage'
 import type { TripContent } from '../../content/types'
@@ -11,11 +12,13 @@ export function NextSteps({
   title,
   media,
   closingStudy = false,
+  closing,
 }: {
   content: TripContent['next']
   title: string
   media: TripContent['media']
   closingStudy?: boolean
+  closing?: ReactNode
 }) {
   return (
     <section
@@ -43,18 +46,19 @@ export function NextSteps({
           </ol>
         </div>
       </div>
-      {closingStudy ? (
-        <div className="transparent-closing">
-          <Photograph image={findImage(media, content.mediaId)} />
-          <div className="section-container">
-            <p className="preserve-lines">{content.closing}</p>
+      {closing ??
+        (closingStudy ? (
+          <div className="transparent-closing">
+            <Photograph image={findImage(media, content.mediaId)} />
+            <div className="section-container">
+              <p className="preserve-lines">{content.closing}</p>
+            </div>
           </div>
-        </div>
-      ) : (
-        <p className="closing-line section-container preserve-lines">
-          {content.closing}
-        </p>
-      )}
+        ) : (
+          <p className="closing-line section-container preserve-lines">
+            {content.closing}
+          </p>
+        ))}
       <footer className="site-footer section-container">
         <a href="#invitation" className="footer-brand">
           <BrandMark />

@@ -1,0 +1,55 @@
+.petrol-door {
+  background: #f5f0e3;
+  color: #103b48;
+}
+.petrol-door .bd {
+  --x-paper: #f5f0e3;
+  --x-ink: #103b48;
+  --x-accent: #536b26;
+  --x-line: #c1ccc5;
+  --night: #103b48;
+  --chalk: #f5f0e3;
+  --pad: var(--gutter);
+  min-height: 0;
+}
+.petrol-door .hybrid-hero {
+  min-height: 100svh;
+  color: #f5f0e3;
+  --x-accent: #d7ed77;
+}
+.petrol-door .hybrid-hero::before {
+  background:
+    linear-gradient(to top, #103b48f2 4%, transparent 65%),
+    linear-gradient(to right, #103b4899, transparent 70%);
+}
+.petrol-door .hybrid-hero .bd-hero-bg {
+  filter: brightness(0.7) saturate(0.85);
+}
+.petrol-door .hybrid-stays {
+  background: #f5f0e3;
+  color: #103b48;
+}
+.petrol-door .hybrid-stays .bd-stay-list button {
+  opacity: 1;
+}
+.petrol-door .hybrid-stays .bd-stay-list button[aria-selected='true'] {
+  background: #e9ecdf;
+}
+.petrol-door .hybrid-stays .bd-stay-name span {
+  color: #927132;
+}
+.petrol-door .hybrid-stays .bd-stay-where {
+  opacity: 1;
+  color: #50686c;
+}
+.petrol-door .hybrid-stays .xs-facts dt {
+  opacity: 1;
+  color: #50686c;
+}
+.petrol-door .hybrid-closing {
+  overflow: visible;
+  color: #f5f0e3;
+}
+.petrol-door .hybrid-closing .bd-leaves::after {
+  background: linear-gradient(to top, #103b48e6, transparent 65%);
+}
