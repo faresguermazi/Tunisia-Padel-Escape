@@ -38,23 +38,6 @@ export function PadelProgram({
             </div>
           </div>
         </div>
-        <div className="court-story">
-          <figure className="court-editorial">
-            <Photograph image={findImage(media, content.courtMediaId)} />
-            <figcaption>{content.courtCaption}</figcaption>
-          </figure>
-          <div className="club-context">
-            <p>{content.clubDescription}</p>
-            <a
-              className="text-link"
-              href={content.clubSourceUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Club context / Tunisian federation
-            </a>
-          </div>
-        </div>
         <dl className="padel-value">
           {content.padelHighlights.map((item) => (
             <div key={item.value}>

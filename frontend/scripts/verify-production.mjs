@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { clubMedia } from '../src/content/clubMedia.ts'
 import { hotelMedia } from '../src/content/hotelMedia.ts'
 
 const review = process.argv.includes('--review')
@@ -28,11 +29,6 @@ const reviewOnly = [
   'collection-study',
   'cinematic-study',
   'design-comparison',
-  'Compact accommodation collection',
-  'Design versions (local review)',
-  'bd-leaves',
-  'petrol-door',
-  'xs-carousel',
 ]
 const forbidden = [
   'identity-study',
@@ -41,7 +37,7 @@ const forbidden = [
   'scopeReviewed',
   'Organizer estimate; date not supplied',
 ]
-const localOnlyFiles = hotelMedia.flatMap((image) =>
+const localOnlyFiles = [...hotelMedia, ...clubMedia].flatMap((image) =>
   image.usage === 'temporary-local'
     ? [image.src, image.smallSrc]
         .filter(Boolean)

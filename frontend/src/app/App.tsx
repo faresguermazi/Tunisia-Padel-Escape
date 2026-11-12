@@ -1,77 +1,15 @@
-import { usePresentationMotion } from '../shared/usePresentationMotion'
 import { lazy, Suspense } from 'react'
-import { trip } from '../content/trip'
-import { TripIntroduction } from '../features/introduction/TripIntroduction'
-import { PadelProgram } from '../features/padel-experience/PadelProgram'
-import { PadelClub } from '../features/padel-experience/PadelClub'
-import { AccommodationCollection } from '../features/accommodations/AccommodationCollection'
-import { PackageOptions } from '../features/budget/PackageOptions'
-import { NextSteps } from '../features/trip-information/NextSteps'
-import { Navigation } from './Navigation'
+import PetrolDoor from '../presentation/petrol-door/PetrolDoor'
 
-const reviewEnabled = import.meta.env.DEV || import.meta.env.MODE === 'review'
 const IdentityStudy = import.meta.env.DEV
   ? lazy(() => import('../features/identity-study/IdentityStudy'))
   : null
-const ExploreRoute = reviewEnabled
-  ? lazy(() => import('../explore/ExploreRoute'))
-  : null
-const VersionSwitcher = reviewEnabled
-  ? lazy(() => import('../explore/VersionSwitcher'))
-  : null
-const PadelPointer = reviewEnabled
-  ? lazy(() => import('../features/creative-study/PadelPointer'))
-  : null
-
-function ReferencePresentation() {
-  usePresentationMotion('collection')
-  return (
-    <>
-      <Navigation trip={trip} />
-      <main>
-        <TripIntroduction trip={trip} />
-        <PadelClub content={trip.club} media={trip.media} />
-        <PadelProgram
-          content={trip.program}
-          activities={trip.activities}
-          media={trip.media}
-        />
-        <AccommodationCollection
-          content={trip.stays}
-          options={trip.accommodations}
-          media={trip.media}
-          hotel={trip.hotel}
-        />
-        <PackageOptions
-          content={trip.budget}
-          accommodations={[...trip.accommodations, trip.hotel]}
-          preferredId={trip.stays.preferredAccommodationId}
-        />
-        <NextSteps
-          content={trip.next}
-          title={trip.title}
-          media={trip.media}
-          closingStudy
-        />
-      </main>
-    </>
-  )
-}
+const PadelPointer =
+  import.meta.env.DEV || import.meta.env.MODE === 'review'
+    ? lazy(() => import('../features/creative-study/PadelPointer'))
+    : null
 
 export default function App() {
-  const params = new URLSearchParams(window.location.search)
-  // Static review routing: /?direction=blue-door. Review and development only.
-  const direction = params.get('direction')
-  if (
-    ExploreRoute &&
-    (direction === 'petrol-door' || direction === 'blue-door')
-  ) {
-    return (
-      <Suspense fallback={null}>
-        <ExploreRoute direction={direction} />
-      </Suspense>
-    )
-  }
   if (
     IdentityStudy &&
     new URLSearchParams(window.location.search).get('study') === 'identity'
@@ -84,17 +22,7 @@ export default function App() {
   }
   return (
     <>
-      <title>{trip.title}</title>
-      <meta name="description" content={trip.introduction.flavour} />
-      <a className="skip-link" href="#on-the-court">
-        Skip to the padel experience
-      </a>
-      <ReferencePresentation />
-      {VersionSwitcher && (
-        <Suspense fallback={null}>
-          <VersionSwitcher current="reference" />
-        </Suspense>
-      )}
+      <PetrolDoor />
       {PadelPointer && (
         <Suspense fallback={null}>
           <PadelPointer />

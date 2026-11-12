@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import { unlink } from 'node:fs/promises'
 import path from 'node:path'
+import { clubMedia } from './src/content/clubMedia.ts'
 import { hotelMedia } from './src/content/hotelMedia.ts'
 
 export default defineConfig(({ mode }) => ({
@@ -10,11 +11,11 @@ export default defineConfig(({ mode }) => ({
     react(),
     tailwindcss(),
     {
-      name: 'exclude-local-hotel-photographs',
+      name: 'exclude-local-photographs',
       apply: 'build',
       async writeBundle(options) {
         const output = path.resolve(options.dir!)
-        for (const image of hotelMedia) {
+        for (const image of [...hotelMedia, ...clubMedia]) {
           if (image.usage !== 'temporary-local') continue
           for (const source of [image.src, image.smallSrc].filter(Boolean)) {
             const filename = path.resolve(output, `.${source}`)

@@ -140,8 +140,6 @@ export interface TripContent {
     dayImageNote: string
     club: string
     breakfastNote: string
-    clubDescription: string
-    clubSourceUrl: string
     destinationMediaId: string
     destinationTitle: string
     destinationNote: string

@@ -1,3 +1,4 @@
+import { clubMedia } from './clubMedia.ts'
 import { hotelMedia } from './hotelMedia.ts'
 import { propertyMedia } from './propertyMedia.ts'
 import type { MediaReference } from './types'
@@ -6,7 +7,7 @@ import type { MediaReference } from './types'
 // Rights-cleared property photos can be added here and referenced by stable ID.
 export const media: MediaReference[] = [
   ...propertyMedia,
-  ...(import.meta.env?.PROD ? [] : hotelMedia),
+  ...(import.meta.env?.PROD ? [] : [...hotelMedia, ...clubMedia]),
   {
     id: 'sidi-coast',
     kind: 'image',

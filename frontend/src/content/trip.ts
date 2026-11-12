@@ -51,9 +51,6 @@ export const trip: TripContent = {
     courtCaption: 'Editorial padel photography, not Padel Gammarth.',
     club: 'Padel Gammarth',
     breakfastNote: 'Breakfast at your stay',
-    clubDescription:
-      'A local competition venue named in the Tunisian federation’s 2026 FIP Bronze program.',
-    clubSourceUrl: 'https://www.ftt.tn/news.php?id=1893&p=1',
     destinationMediaId: 'sidi-coast',
     destinationTitle: 'The Mediterranean, with a Tunisian soul.',
     destinationNote: '',

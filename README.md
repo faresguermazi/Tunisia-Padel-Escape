@@ -17,8 +17,7 @@ npm.cmd run dev
 On this Windows workstation, `scripts/preview.cmd` also finds the existing portable
 Node 24 runtime when Node is not on PATH. It starts a local-only server.
 
-Open http://127.0.0.1:5173/. Petrol & cream is the only presentation.
-The alternate and comparison controls have been removed.
+Open http://127.0.0.1:5173/. Petrol & doors is the only presentation.
 
 ```powershell
 npm.cmd run check          # TypeScript, ESLint, Prettier
@@ -106,9 +105,6 @@ Amiri Arabic lettering at large and small sizes, on petrol and cream. Use Play o
 turn to inspect the finite motion. Reduced motion keeps it static. The presentation
 header remains text-only, and neither production nor review builds includes the study.
 
-## Creative versions (local and review only)
+## One presentation
 
-The reference remains the default. Compare Claude's merged versions at
-http://localhost:5173/?direction=petrol-door and
-http://localhost:5173/?direction=blue-door, or use the collapsible Versions control.
-The new Padel Gammarth chapter is available in all three; production excludes the alternatives.
+Petrol & doors is the only version. The Padel Gammarth chapter uses club photographs only in development; production and review builds show a labelled stand-in until rights are confirmed.

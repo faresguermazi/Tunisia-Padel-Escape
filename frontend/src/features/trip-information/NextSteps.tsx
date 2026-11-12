@@ -64,7 +64,6 @@ export function NextSteps({
           <BrandMark />
           <span>{title}</span>
         </a>
-        <span>{content.signoff}</span>
         <a href="#invitation" className="back-top">
           Back to the top
           <Icon name="up" />
